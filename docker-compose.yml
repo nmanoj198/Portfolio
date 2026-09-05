@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: portfolio-postgres
+    environment:
+      POSTGRES_DB: portfolio
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: change-me
+    ports:
+      - "5432:5432"
+    volumes:
+      - portfolio_pg:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/portfolio
+      DB_USER: portfolio
+      DB_PASSWORD: change-me
+      JWT_SECRET: change-this-in-production-to-a-long-random-secret
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+volumes:
+  portfolio_pg:
