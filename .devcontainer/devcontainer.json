@@ -1,0 +1,40 @@
+{
+  "name": "Spring Boot + Angular Portfolio",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "jdkDistro": "oracle"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24.15.0"
+    }
+  },
+
+  "forwardPorts": [
+    8080,
+    4200
+  ],
+
+  "portsAttributes": {
+    "8080": {
+      "label": "Spring Boot Backend",
+      "onAutoForward": "notify"
+    },
+    "4200": {
+      "label": "Angular Frontend",
+      "onAutoForward": "openBrowser"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+        "angular.ng-template"
+      ]
+    }
+  }
+}
